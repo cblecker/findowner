@@ -19,14 +19,13 @@ var (
 	githubOrg   string
 	githubRepo  string
 	topLevelDir string
+	levelLimit  int
+	ownerLimit  int
 )
 
 var now time.Time
 
 var excludedDirList []string
-
-const levelLimit = 3
-const ownerLimit = 3
 
 func ExitError(err error) {
 	fmt.Fprintln(os.Stderr, err)
@@ -38,6 +37,8 @@ func init() {
 	flag.StringVar(&githubOrg, "github-org", "kubernetes", "")
 	flag.StringVar(&githubRepo, "github-repo", "kubernetes", "")
 	flag.StringVar(&topLevelDir, "top-dir", "", "")
+	flag.IntVar(&levelLimit, "level-limit", 3, "")
+	flag.IntVar(&ownerLimit, "owner-limit", 3, "")
 	flag.Parse()
 
 	now = time.Now()
