@@ -4,7 +4,6 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"log"
 	"os"
 	"sort"
 	"strings"
@@ -113,7 +112,6 @@ func fetchTopCommitters(client *github.Client, dir string, limit int) {
 				continue
 			}
 			if c.Author == nil || c.Author.Login == nil {
-				log.Printf("Author or Author.Login is nil, unexpected commit: %v\n", c.Commit.String())
 				continue
 			}
 			id := *c.Author.Login
